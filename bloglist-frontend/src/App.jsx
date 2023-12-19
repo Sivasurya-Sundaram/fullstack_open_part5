@@ -3,6 +3,7 @@ import Blog from './components/Blog';
 import blogService from './services/blogs';
 import LoginForm from './components/LoginForm';
 import Notification from './components/Notification';
+import BlogForm from './components/BlogForm';
 
 const App = () => {
   const [blogs, setBlogs] = useState([]);
@@ -40,6 +41,12 @@ const App = () => {
           <button type="button" onClick={handleLogout}>
             Logout
           </button>
+          <BlogForm
+            setBlogs={setBlogs}
+            blogs={blogs}
+            setMessage={setMessage}
+            setIsError={setIsError}
+          />
         </div>
       )}
       <h2>blogs</h2>

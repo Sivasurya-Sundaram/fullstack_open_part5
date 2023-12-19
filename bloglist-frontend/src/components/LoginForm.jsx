@@ -24,7 +24,9 @@ const LoginForm = ({ setUser, setMessage, setIsError }) => {
       }, 5000);
     } catch (exception) {
       setIsError(true);
-      setMessage('Wrong credentails');
+      setMessage(
+        'Wrong credentails, please enter correct username or password'
+      );
       setTimeout(() => {
         setMessage(null);
         setIsError(false);
@@ -33,6 +35,7 @@ const LoginForm = ({ setUser, setMessage, setIsError }) => {
   };
   return (
     <div>
+      <h2>Log in to application</h2>
       <form onSubmit={handleLogin}>
         <div>
           Username{' '}
