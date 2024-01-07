@@ -1,36 +1,45 @@
 import { useState } from 'react';
 import blogService from '../services/blogs';
 
-const BlogForm = ({ setBlogs, blogs, setMessage, setIsError }) => {
+const BlogForm = ({ createBlog }) => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [url, setUrl] = useState('');
   const handleAddBlog = async (event) => {
     event.preventDefault();
-    try {
-      const newBlog = await blogService.addBlog({
-        title: title,
-        author: author,
-        url: url,
-        likes: 3,
-      });
-      setBlogs(blogs.concat(newBlog));
-      setMessage(`a new blog ${newBlog.title} by ${newBlog.author} is added`);
-      setTitle('');
-      setAuthor('');
-      setUrl('');
-      setTimeout(() => {
-        setMessage(null);
-        setIsError(false);
-      }, 5000);
-    } catch (exception) {
-      setIsError(true);
-      setMessage('Cannot added the blog,Please try again with proper data ');
-      setTimeout(() => {
-        setMessage(null);
-        setIsError(false);
-      }, 5000);
-    }
+    // try {
+    //   const newBlog = await blogService.addBlog({
+    //     title: title,
+    //     author: author,
+    //     url: url,
+    //     likes: 3,
+    //   });
+    //   setBlogs(blogs.concat(newBlog));
+    //   setMessage(`a new blog ${newBlog.title} by ${newBlog.author} is added`);
+    //   setTitle('');
+    //   setAuthor('');
+    //   setUrl('');
+    //   setTimeout(() => {
+    //     setMessage(null);
+    //     setIsError(false);
+    //   }, 5000);
+    // } catch (exception) {
+    //   setIsError(true);
+    //   setMessage('Cannot added the blog,Please try again with proper data ');
+    //   setTimeout(() => {
+    //     setMessage(null);
+    //     setIsError(false);
+    //   }, 5000);
+    // }
+    createBlog({
+      title: title,
+      author: author,
+      url: url,
+      likes: 0,
+    });
+    setTitle('');
+    setAuthor('');
+    setUrl('');
   };
   return (
     <div>
