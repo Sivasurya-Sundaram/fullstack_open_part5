@@ -73,6 +73,24 @@ const App = () => {
       }, 5000);
     }
   };
+  const handleDelete = async (id) => {
+    try {
+      await blogService.deleteBlog(id);
+      const newblogs = await _.orderBy(
+        blogs.filter((x) => x.id != id),
+        'likes',
+        'desc'
+      );
+      setBlogs(newblogs);
+    } catch (exception) {
+      setIsError(true);
+      setMessage('Cannot delete the blog,Please try again with proper data ');
+      setTimeout(() => {
+        setMessage(null);
+        setIsError(false);
+      }, 5000);
+    }
+  };
   return (
     <div>
       {message !== null && <Notification message={message} isError={isError} />}
@@ -98,7 +116,12 @@ const App = () => {
       )}
       <h2>blogs</h2>
       {blogs.map((blog) => (
-        <Blog key={blog.id} blog={blog} handleLinkUpdate={handleLikeUpdate} />
+        <Blog
+          key={blog.id}
+          blog={blog}
+          handleLinkUpdate={handleLikeUpdate}
+          handleDelete={handleDelete}
+        />
       ))}
     </div>
   );

@@ -1,12 +1,17 @@
 import { useState } from 'react';
 
-const Blog = ({ blog, handleLinkUpdate }) => {
+const Blog = ({ blog, handleLinkUpdate, handleDelete }) => {
   const [isDetailView, setIsDetailView] = useState(false);
   const handleViewClick = async (event) => {
     setIsDetailView(!isDetailView);
   };
   const handleLikeClick = async (event) => {
     handleLinkUpdate({ ...blog, likes: ++blog.likes });
+  };
+  const handleDeleteClick = async (event) => {
+    if (window.confirm(`Remove Blog ${blog.title} by ${blog.author}`)) {
+      handleDelete(blog.id);
+    }
   };
   const blogStyle = {
     border: '1px solid black',
@@ -33,6 +38,7 @@ const Blog = ({ blog, handleLinkUpdate }) => {
             links {blog.likes} <button onClick={handleLikeClick}>like</button>
           </p>
           <p>{blog.user.name}</p>
+          <button onClick={handleDeleteClick}>Delete</button>
         </div>
       )}
     </div>
