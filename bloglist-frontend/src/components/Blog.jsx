@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 const Blog = ({ blog, handleLinkUpdate, handleDelete }) => {
   const [isDetailView, setIsDetailView] = useState(false);
@@ -44,5 +45,9 @@ const Blog = ({ blog, handleLinkUpdate, handleDelete }) => {
     </div>
   );
 };
-
+Blog.propTypes = {
+  blog: PropTypes.object.isRequired,
+  handleLinkUpdate: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired,
+};
 export default Blog;
