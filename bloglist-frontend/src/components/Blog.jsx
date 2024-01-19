@@ -21,15 +21,15 @@ const Blog = ({ blog, handleLinkUpdate, handleDelete }) => {
     marginBottom: '5px',
   };
   return (
-    <div style={blogStyle}>
+    <div className="blog" style={blogStyle}>
       {!isDetailView && (
-        <div>
+        <div className="simpleView">
           {blog.title} {blog.author}{' '}
           <button onClick={handleViewClick}>View</button>
         </div>
       )}
       {isDetailView && (
-        <div>
+        <div className="detailedView">
           <p>
             {blog.title} {blog.author}{' '}
             <button onClick={handleViewClick}>Hide</button>
