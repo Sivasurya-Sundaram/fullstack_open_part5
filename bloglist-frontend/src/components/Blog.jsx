@@ -35,8 +35,11 @@ const Blog = ({ blog, handleLinkUpdate, handleDelete }) => {
             <button onClick={handleViewClick}>Hide</button>
           </p>
           <a href="{blog.url}">{blog.url}</a>
-          <p>
-            links {blog.likes} <button onClick={handleLikeClick}>like</button>
+          <p id="likes">
+            likes {blog.likes}{' '}
+            <button id="like-button" onClick={handleLikeClick}>
+              like
+            </button>
           </p>
           <p>{blog.user.name}</p>
           <button onClick={handleDeleteClick}>Delete</button>
